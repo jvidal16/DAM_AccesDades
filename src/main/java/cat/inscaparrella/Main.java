@@ -33,21 +33,19 @@ public class Main {
     private static void buildHeader(Path dir) {
         Set<String> cols = new TreeSet<>();
 
+
         try (Stream<Path> paths = Files.list(dir)){
             paths.filter(Files::isRegularFile)
                     .parallel()
                     .forEach( path -> {
+                        String firstLine;
                         BufferedReader reader = null;
+
                         try {
                             reader = new BufferedReader(new FileReader(path.toString()));
                             System.out.print("\r " + path.getFileName().toString());
-                        } catch (FileNotFoundException e) {
-                            System.err.println("error opening file " + path.toString());
-                        }
-                        String firstLine;
 
-                        try {
-                            assert reader != null;
+
                             firstLine = reader.readLine();
                             // Regex to match commas not inside quotes
                             String[] fields = firstLine.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
@@ -57,6 +55,9 @@ public class Main {
 
                             //System.out.println(path.getFileName() + ": " + firstLine));
 
+                        }
+                        catch (FileNotFoundException e) {
+                            System.err.println("error opening file " + path.toString());
                         }
                         catch (IOException e) {
                             System.err.println("Error reading file " + path + ": " + e.getMessage());
