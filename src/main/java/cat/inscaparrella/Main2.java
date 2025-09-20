@@ -25,20 +25,18 @@ public class Main2 {
         Path dir = Paths.get("E:\\gsoy-latest");
         try {
             buildHeader(dir);
+
+            Thread.sleep(200);
+        } catch (InterruptedException ignored) {
+            //nothing
         } catch (Exception e) {
             System.err.println("Exiting with error -1");
             System.exit(-1);
         }
 
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException ignored) {
-
-        }
-
         watch.stop();
 
-        System.out.println("\nExecution time: " + watch.getTime(TimeUnit.SECONDS)/60 + " min");
+        System.out.println("\nExecution time: " + watch.getTime(TimeUnit.SECONDS) + " s");
         System.exit(0);
     }
 

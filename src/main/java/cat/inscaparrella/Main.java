@@ -19,7 +19,6 @@ import java.util.stream.Stream;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        StopWatch watch = new StopWatch();
 
         long start = System.currentTimeMillis();
 
@@ -27,7 +26,7 @@ public class Main {
         buildHeader(dir);
 
         long end = System.currentTimeMillis();
-        System.out.println("\rExecution time: " + (end - start) + " ms");
+        System.out.println("\rExecution time: " + (end - start)/1000 + " s");
 
     }
 
