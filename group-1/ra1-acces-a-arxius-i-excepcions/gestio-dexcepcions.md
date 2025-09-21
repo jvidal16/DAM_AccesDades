@@ -1,0 +1,2 @@
+# Gestió d'Excepcions
+
